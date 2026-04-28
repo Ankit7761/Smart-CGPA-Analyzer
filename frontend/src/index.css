@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0a14;
+  --bg-secondary: #0f0f1e;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.07);
+  --accent: #7c6aff;
+  --accent-glow: rgba(124, 106, 255, 0.3);
+  --accent2: #06d6a0;
+  --accent3: #ff6b6b;
+  --accent4: #ffd166;
+  --text-primary: #f0f0ff;
+  --text-secondary: #9090b0;
+  --text-muted: #5a5a7a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Animated mesh background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,106,255,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(6,214,160,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 60% 30%, rgba(255,107,107,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+/* Glass card */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-hover:hover {
+  background: var(--glass-hover);
+  border-color: rgba(124, 106, 255, 0.2);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Glow button */
+.btn-primary {
+  background: linear-gradient(135deg, #7c6aff, #5b4fcf);
+  box-shadow: 0 0 20px rgba(124,106,255,0.35);
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(124,106,255,0.55);
+  transform: translateY(-1px);
+}
+
+/* Accent text */
+.text-accent { color: var(--accent); }
+.text-accent2 { color: var(--accent2); }
+.text-accent3 { color: var(--accent3); }
+.text-accent4 { color: var(--accent4); }
+
+/* Number font */
+.font-mono-num { font-family: 'JetBrains Mono', monospace; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(124,106,255,0.3); border-radius: 2px; }
+
+/* Input styling */
+.dark-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+.dark-input:focus {
+  outline: none;
+  border-color: rgba(124,106,255,0.5);
+  box-shadow: 0 0 0 3px rgba(124,106,255,0.1);
+  background: rgba(124,106,255,0.06);
+}
+.dark-input::placeholder { color: var(--text-muted); }
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease forwards; }
+.fade-up-1 { animation-delay: 0.05s; opacity: 0; }
+.fade-up-2 { animation-delay: 0.1s;  opacity: 0; }
+.fade-up-3 { animation-delay: 0.15s; opacity: 0; }
+.fade-up-4 { animation-delay: 0.2s;  opacity: 0; }
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124,106,255,0.2); }
+  50%       { box-shadow: 0 0 35px rgba(124,106,255,0.45); }
+}
+.pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+/* Grade badge colors */
+.grade-O    { background: rgba(6,214,160,0.15);  color: #06d6a0; border: 1px solid rgba(6,214,160,0.3); }
+.grade-Ap   { background: rgba(6,214,160,0.1);   color: #2ee8b8; border: 1px solid rgba(6,214,160,0.2); }
+.grade-A    { background: rgba(99,179,237,0.15);  color: #63b3ed; border: 1px solid rgba(99,179,237,0.3); }
+.grade-Bp   { background: rgba(124,106,255,0.15); color: #9f8fff; border: 1px solid rgba(124,106,255,0.3); }
+.grade-B    { background: rgba(255,209,102,0.15); color: #ffd166; border: 1px solid rgba(255,209,102,0.3); }
+.grade-C    { background: rgba(255,168,50,0.15);  color: #ffa832; border: 1px solid rgba(255,168,50,0.3); }
+.grade-F    { background: rgba(255,107,107,0.15); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.3); }
+
+select option { background: #1a1a2e; color: #f0f0ff; }
